@@ -45,9 +45,10 @@ class _AffichageState extends State<Affichage> {
                             snapshot.data![i]['prix'].toString(),
                             style: const TextStyle(fontSize: 18),
                           ),
-                          Text(
-                            snapshot.data![i]['imgUrl'].toString(),
-                            style: const TextStyle(fontSize: 18),
+                          Image.asset(
+                            snapshot.data![i]['imgUrl'],
+                            height: 250,
+                            width: 250,
                           ),
                           Text(
                             snapshot.data![i]['quantityP'].toString(),
