@@ -12,9 +12,11 @@ class Modifier extends StatefulWidget {
 
 class _ModifierState extends State<Modifier> {
   final GlobalKey<FormState> login = GlobalKey<FormState>();
-  final themeController = TextEditingController();
-  final questionController = TextEditingController();
-  final reponseController = TextEditingController();
+  final nomController = TextEditingController();
+  final prixController = TextEditingController();
+  final imgUrlController = TextEditingController();
+  final quantityPController = TextEditingController();
+
   late Future<List> _produit;
 
   @override
@@ -25,9 +27,10 @@ class _ModifierState extends State<Modifier> {
     _produit = Produit.getQuestion(widget.id);
     _produit.then((value) => {
           // On pré-remplit le formulaire avec les données récupérer de l'API
-          themeController.text = value[0]['theme'],
-          questionController.text = value[0]['question'],
-          reponseController.text = value[0]['reponse'],
+          nomController.text = value[0]['nom'],
+          prixController.text = value[0]['prix'],
+          imgUrlController.text = value[0]['imgUrl'],
+          quantityPController.text = value[0]['quantityP']
         });
   }
 
@@ -45,7 +48,7 @@ class _ModifierState extends State<Modifier> {
   Widget _Modifier(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Modification d'une question"),
+        title: const Text("Modification d'un article"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -56,7 +59,7 @@ class _ModifierState extends State<Modifier> {
                 padding: EdgeInsets.all(50),
                 child: Center(
                   child: Text(
-                    "Modifier une Question",
+                    "Modifier un article",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
@@ -67,14 +70,14 @@ class _ModifierState extends State<Modifier> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: TextFormField(
-                  controller: themeController,
+                  controller: nomController,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Thème',
-                      hintText: 'Entrez un thème'),
+                      labelText: 'nom',
+                      hintText: 'Entrez un nom'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Veuillez rentrer un thème";
+                      return "Veuillez rentrer un nom";
                     }
                     return null;
                   },
@@ -84,14 +87,14 @@ class _ModifierState extends State<Modifier> {
                 padding: const EdgeInsets.only(
                     left: 15.0, right: 15.0, top: 15, bottom: 0),
                 child: TextFormField(
-                  controller: questionController,
+                  controller: prixController,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Question',
-                      hintText: 'Entrez une question'),
+                      labelText: 'prix',
+                      hintText: 'Entrez un prix'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Veuillez rentrer une question";
+                      return "Veuillez rentrer un prix";
                     }
                     return null;
                   },
@@ -101,14 +104,31 @@ class _ModifierState extends State<Modifier> {
                 padding: const EdgeInsets.only(
                     left: 15.0, right: 15.0, top: 15, bottom: 0),
                 child: TextFormField(
-                  controller: reponseController,
+                  controller: imgUrlController,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Réponse',
-                      hintText: 'Entrez la réponse'),
+                      labelText: 'image',
+                      hintText: 'Entrez une image'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Veuillez rentrer la réponse";
+                      return "Veuillez rentrer une image ";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 15.0, right: 15.0, top: 15, bottom: 0),
+                child: TextFormField(
+                  controller: quantityPController,
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'quantité',
+                      hintText: 'Entrez une quantité'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Veuillez rentrer une quantité ";
                     }
                     return null;
                   },
@@ -125,8 +145,13 @@ class _ModifierState extends State<Modifier> {
                   child: TextButton(
                     onPressed: () {
                       if (login.currentState!.validate()) {
-                        Produit.Update(context, widget.id, themeController.text,
-                            questionController.text, reponseController.text);
+                        Produit.Update(
+                            context,
+                            widget.id,
+                            nomController.text,
+                            prixController.text,
+                            imgUrlController.text,
+                            quantityPController.text);
                       }
                     },
                     child: const Text("Validez",

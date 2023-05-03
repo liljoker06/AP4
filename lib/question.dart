@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -51,18 +52,24 @@ class Produit {
     }
   }
 
-  static ajout(BuildContext context, String theme, String question,
-      String reponse) async {
+  static ajout(BuildContext context, nom, prix, imgUrl, quantityP) async {
     try {
+      var connection = {
+        "nom": nom,
+        "prix": prix,
+        "imgUrl": imgUrl,
+        "quantityP": quantityP
+      };
       var res = await http.post(
-        Uri.parse("$baseUrl/question"),
+        Uri.parse("$baseUrl/articles"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(<String, String>{
-          'theme': theme,
-          'question': question,
-          'reponse': reponse
+          'nom': nom,
+          'prix': prix,
+          'imgUrl': imgUrl,
+          'quantityP': quantityP
         }),
       );
       if (res.statusCode == 200) {
@@ -75,23 +82,29 @@ class Produit {
     }
   }
 
-  static Update(BuildContext context, int id, String theme, String question,
-      String reponse) async {
+  static Update(BuildContext context, id, nom, prix, imgUrl, quantityP) async {
     try {
+      var connection = {
+        "nom": nom,
+        "prix": prix,
+        "imgUrl": imgUrl,
+        "quantityP": quantityP
+      };
       var res = await http.put(
-        Uri.parse("$baseUrl/question/$id"),
+        Uri.parse("$baseUrl/articles/:id"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(<String, String>{
-          'theme': theme,
-          'question': question,
-          'reponse': reponse,
+          'nom': nom,
+          'prix': prix,
+          'imgUrl': imgUrl,
+          'quantityP': quantityP,
           'id': id.toString()
         }),
       );
       if (res.statusCode == 200) {
-        Navigator.pushNamed(context, '/liste');
+        Navigator.pushNamed(context, '/articles');
       } else {
         Navigator.pushNamed(context, '/');
       }

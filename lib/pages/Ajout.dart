@@ -10,9 +10,10 @@ class Ajout extends StatefulWidget {
 
 class _AjoutState extends State<Ajout> {
   final GlobalKey<FormState> login = GlobalKey<FormState>();
-  final themeController = TextEditingController();
-  final questionController = TextEditingController();
-  final reponseController = TextEditingController();
+  final nomController = TextEditingController();
+  final prixController = TextEditingController();
+  final imgUrlController = TextEditingController();
+  final quantityPController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class _AjoutState extends State<Ajout> {
   Widget _Ajout(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Ajout d'une question"),
+        title: const Text("Ajout d'un article "),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -39,7 +40,7 @@ class _AjoutState extends State<Ajout> {
                 padding: EdgeInsets.all(50),
                 child: Center(
                   child: Text(
-                    "Ajouter une Question",
+                    "Ajouter un article",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
@@ -50,14 +51,14 @@ class _AjoutState extends State<Ajout> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: TextFormField(
-                  controller: themeController,
+                  controller: nomController,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Thème',
-                      hintText: 'Entrez un thème'),
+                      labelText: 'Nom',
+                      hintText: 'Entrez un Nom'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Veuillez rentrer un thème";
+                      return "Veuillez rentrer un nom d'articles";
                     }
                     return null;
                   },
@@ -67,14 +68,14 @@ class _AjoutState extends State<Ajout> {
                 padding: const EdgeInsets.only(
                     left: 15.0, right: 15.0, top: 15, bottom: 0),
                 child: TextFormField(
-                  controller: questionController,
+                  controller: prixController,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Question',
-                      hintText: 'Entrez une question'),
+                      labelText: 'Prix',
+                      hintText: 'Entrez un prix'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Veuillez rentrer une question";
+                      return "Veuillez rentrer une prix";
                     }
                     return null;
                   },
@@ -84,14 +85,31 @@ class _AjoutState extends State<Ajout> {
                 padding: const EdgeInsets.only(
                     left: 15.0, right: 15.0, top: 15, bottom: 0),
                 child: TextFormField(
-                  controller: reponseController,
+                  controller: imgUrlController,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Réponse',
-                      hintText: 'Entrez la réponse'),
+                      labelText: 'image',
+                      hintText: 'Entrez une image'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Veuillez rentrer la réponse";
+                      return "Veuillez rentrer une image";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 15.0, right: 15.0, top: 15, bottom: 0),
+                child: TextFormField(
+                  controller: quantityPController,
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'quantité',
+                      hintText: 'Entrez une quantité'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Veuillez rentrer une quantité";
                     }
                     return null;
                   },
@@ -108,8 +126,12 @@ class _AjoutState extends State<Ajout> {
                   child: TextButton(
                     onPressed: () {
                       if (login.currentState!.validate()) {
-                        Produit.ajout(context, themeController.text,
-                            questionController.text, reponseController.text);
+                        Produit.ajout(
+                            context,
+                            nomController.text,
+                            prixController.text,
+                            imgUrlController.text,
+                            quantityPController.text);
                       }
                     },
                     child: const Text("Validez",
