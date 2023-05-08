@@ -250,8 +250,16 @@
             "header": "L’ouverture de ce volet vous a-t-elle été utile ?",
             "text": "L’ouverture de ce volet vous a-t-elle été utile ?"
          },
+         "lifetime": "tab",
          "settings_description": "Permet aux liens provenant de différentes surfaces de système d’exploitation Windows d’ouvrir les jeux occasionnels dans le volet latéral lors du lancement de Microsoft Edge.",
-         "settings_title": "Ouvrir automatiquement Les jeux occasionnels dans le volet latéral"
+         "settings_title": "Ouvrir automatiquement Les jeux occasionnels dans le volet latéral",
+         "triggering_configs|flight:msHubAppsGamesAutoShowTriggering": [ {
+            "max_show_count": 3,
+            "min_sec_between_auto_show": 86400,
+            "show_count_basis": "signal",
+            "signal_name": "IsGamesShorelineAutoShow",
+            "signal_threshold": 0.5
+         } ]
       },
       "capabilities": {
          "resize_disabled": true
@@ -277,9 +285,9 @@
       "description": "Jouez gratuitement à des jeux populaires.",
       "icon": {
          "raster_icon": {
-            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_dark.png/1.6.14/asset",
-            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_hc.png/1.6.14/asset",
-            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_light.png/1.6.14/asset"
+            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_dark.png/1.6.15/asset",
+            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_hc.png/1.6.15/asset",
+            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_light.png/1.6.15/asset"
          }
       },
       "id": "96defd79-4015-4a32-bd09-794ff72183ef",
@@ -311,7 +319,7 @@
          "url|flight:msEdgeHubAppWGITopGamesAndSearchbar": "https://www.msn.com/widgets/fullpage/gaming/widget?experiences=CasualGamesHub&sharedHeader=1&item=flights%3Aprg-cg-wgitg,prg-cg-l1wgi",
          "url|flight:msEdgeHubAppWGITopSearchbar": "https://www.msn.com/widgets/fullpage/gaming/widget?experiences=CasualGamesHub&sharedHeader=1&item=flights%3Aprg-cg-l1wgi"
       },
-      "version": "1.6.14"
+      "version": "1.6.15"
    }, {
       "auto_show": {
          "enabled": true,

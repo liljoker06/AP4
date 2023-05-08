@@ -8,12 +8,12 @@ void main() => runApp(const Home());
 class Home extends StatelessWidget {
   const Home({super.key});
 
-  static const String _title = 'Quizz';
+  static const String _title = 'M2L';
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Notre application de quizz',
+      title: 'M2L ADMIN',
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),

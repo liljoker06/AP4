@@ -73,7 +73,7 @@ class Produit {
         }),
       );
       if (res.statusCode == 200) {
-        Navigator.pushNamed(context, '/liste');
+        Navigator.pushNamed(context, '/articles');
       } else {
         Navigator.pushNamed(context, '/');
       }
@@ -91,7 +91,7 @@ class Produit {
         "quantityP": quantityP
       };
       var res = await http.put(
-        Uri.parse("$baseUrl/articles/:id"),
+        Uri.parse("$baseUrl/articles/$id"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -114,10 +114,10 @@ class Produit {
   }
 
   static Delete(BuildContext context, int id) async {
-    var res = await http.delete(Uri.parse('$baseUrl/question/$id'),
+    var res = await http.delete(Uri.parse('$baseUrl/articles/$id'),
         body: id.toString());
     if (res.statusCode == 200) {
-      Navigator.pushNamed(context, '/liste');
+      Navigator.pushNamed(context, '/articles');
     } else {
       Navigator.pushNamed(context, '/');
     }

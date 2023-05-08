@@ -44,7 +44,7 @@ class _AjoutState extends State<Ajout> {
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
-                        color: Colors.blueAccent),
+                        color: Color.fromARGB(255, 255, 0, 0)),
                   ),
                 ),
               ),
@@ -121,7 +121,7 @@ class _AjoutState extends State<Ajout> {
                   width: 250,
                   margin: const EdgeInsets.fromLTRB(0, 15, 0, 0),
                   decoration: BoxDecoration(
-                      color: Colors.blue,
+                      color: Colors.red,
                       borderRadius: BorderRadius.circular(20)),
                   child: TextButton(
                     onPressed: () {
